@@ -12,6 +12,16 @@ cask "gopro-card" do
 
   app "GoPro Card.app"
 
+  caveats <<~EOS
+    This build is ad-hoc signed rather than notarized, so macOS may refuse the first
+    launch with "cannot be opened because the developer cannot be verified".
+
+    Either approve it once in System Settings > Privacy & Security > Open Anyway, or
+    install without the quarantine flag:
+
+      brew reinstall --cask --no-quarantine gopro-card
+  EOS
+
   uninstall launchctl: "com.gopromount.goprocard",
             quit:      "com.gopromount.goprocard"
 
